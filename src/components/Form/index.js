@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Checkbox from '../Checkbox';
 
 import Input from '../Input';
+import Select from '../Select';
 
 export default class Form extends Component {
   state = {
@@ -93,6 +95,10 @@ export default class Form extends Component {
           value={ image }
           onChange={ this.handleChange }
         />
+
+        <Select />
+
+        <Checkbox />
 
         <button type="submit" data-testid="save-button">Salvar</button>
       </form>
