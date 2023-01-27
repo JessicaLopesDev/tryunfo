@@ -3,11 +3,11 @@ import { PropTypes } from 'prop-types';
 
 export default class Input extends Component {
   render() {
-    const { id, labeltext } = this.props;
+    const { id, label } = this.props;
 
     return (
       <label htmlFor={ id }>
-        {labeltext}
+        {label}
 
         <input id={ id } { ...this.props } />
       </label>
@@ -16,6 +16,6 @@ export default class Input extends Component {
 }
 
 Input.propTypes = {
-  labeltext: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
