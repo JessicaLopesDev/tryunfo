@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Checkbox extends Component {
   render() {
+    const { id } = this.props;
+
     return (
-      <label htmlFor="check-input">
-        <input
-          type="checkbox"
-          id="check-input"
-          data-testid="trunfo-input"
-        />
+      <label htmlFor={ id }>
+        <input id={ id } { ...this.props } />
         Super Trybe Trunfo
       </label>
     );
   }
 }
+
+Checkbox.propTypes = {
+  id: PropTypes.string.isRequired,
+};
