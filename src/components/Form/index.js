@@ -6,11 +6,6 @@ import Input from '../Input';
 import Select from '../Select';
 
 export default class Form extends Component {
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(this.state);
-  };
-
   render() {
     const {
       cardName,
@@ -28,7 +23,7 @@ export default class Form extends Component {
     } = this.props;
 
     return (
-      <form onSubmit={ this.handleSubmit }>
+      <form>
         <Input
           name="cardName"
           data-testid="name-input"

@@ -16,6 +16,10 @@ class App extends React.Component {
     // hasTrunfo: bool,
   };
 
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+  };
+
   stringInputValidation = () => {
     const {
       cardName,
@@ -98,7 +102,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
-          onSaveButtonClick={ onSaveButtonClick }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
