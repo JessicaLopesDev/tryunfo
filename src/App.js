@@ -12,8 +12,50 @@ class App extends React.Component {
     cardImage: '',
     cardRare: '',
     cardTrunfo: false,
-    // hasTrunfo: bool,
     isSaveButtonDisabled: true,
+    // hasTrunfo: bool,
+  };
+
+  stringInputValidation = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+    } = this.state;
+
+    return cardName.length
+      && cardDescription.length
+      && cardImage.length
+      && cardRare.length;
+  };
+
+  numberInputValidation = () => {
+    const {
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    } = this.state;
+
+    const maxValue = 90;
+    const maxTotalValue = 210;
+
+    const validateCardAttr1 = Number(cardAttr1) >= 0 && Number(cardAttr1) <= maxValue;
+    const validateCardAttr2 = Number(cardAttr2) >= 0 && Number(cardAttr2) <= maxValue;
+    const validateCardAttr3 = Number(cardAttr3) >= 0 && Number(cardAttr3) <= maxValue;
+
+    const sumValues = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
+    const validateTotal = sumValues <= maxTotalValue;
+
+    return validateCardAttr1 && validateCardAttr2 && validateCardAttr3 && validateTotal;
+  };
+
+  formValidation = () => {
+    if (this.stringInputValidation() && this.numberInputValidation()) {
+      this.setState({ isSaveButtonDisabled: false });
+    } else {
+      this.setState({ isSaveButtonDisabled: true });
+    }
   };
 
   onInputChange = ({ target }) => {
@@ -21,12 +63,11 @@ class App extends React.Component {
       this.setState((previousState) => ({
         ...previousState,
         cardTrunfo: !previousState.cardTrunfo,
-      }));
+      }), this.formValidation);
     } else {
-      this.setState((previousState) => ({
-        ...previousState,
+      this.setState({
         [target.name]: target.value,
-      }));
+      }, this.formValidation);
     }
   };
 
@@ -40,11 +81,10 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      // hasTrunfo,
       isSaveButtonDisabled,
-      // onInputChange,
-      // onSaveButtonClick,
+      // hasTrunfo,
     } = this.state;
+
     return (
       <>
         <Form
