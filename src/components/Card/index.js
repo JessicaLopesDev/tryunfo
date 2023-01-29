@@ -39,7 +39,11 @@ export default class Card extends Component {
         <span data-testid="rare-card">
           { cardRare }
         </span>
-        { cardTrunfo ? <h3 data-testid="trunfo-card">Super Trunfo</h3> : ''}
+        {
+          cardTrunfo
+            ? <h3 data-testid="trunfo-card">Super Trunfo</h3>
+            : ''
+        }
       </div>
     );
   }

@@ -6,27 +6,6 @@ import Input from '../Input';
 import Select from '../Select';
 
 export default class Form extends Component {
-  // state = {
-  //   cardName: '',
-  //   cardDescription: '',
-  //   cardAttr1: 0,
-  //   cardAttr2: 0,
-  //   cardAttr3: 0,
-  //   cardImage: '',
-  //   cardRare: '',
-  //   cardTrunfo: bool,
-  //   hasTrunfo: bool,
-  //   isSaveButtonDisabled: bool,
-  //   onInputChange: () => {},
-  //   onSaveButtonClick: () => {},
-  // };
-
-  // onInputChange = ({ target }) => {
-  //   this.setState(() => ({
-  //     [target.name]: target.value,
-  //   }));
-  // };
-
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
@@ -42,7 +21,7 @@ export default class Form extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      // hasTrunfo,
+      // // hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
@@ -117,6 +96,7 @@ export default class Form extends Component {
         />
 
         <Select
+          name="cardRare"
           id="rare"
           data-testid="rare-input"
           value={ cardRare }
@@ -124,6 +104,7 @@ export default class Form extends Component {
         />
 
         <Checkbox
+          name="cardTrunfo"
           id="trunfo"
           type="checkbox"
           data-testid="trunfo-input"
@@ -153,7 +134,7 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  // hasTrunfo: PropTypes.bool.isRequired,
+  // // hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,

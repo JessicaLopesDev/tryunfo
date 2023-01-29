@@ -8,7 +8,7 @@ export default class Select extends Component {
     return (
       <label htmlFor={ id }>
         Raridade
-        <select id={ id } { ...this.props }>
+        <select id={ id } name="selectName" { ...this.props }>
           <option value="normal">Normal</option>
           <option value="raro">Raro</option>
           <option value="muito raro">Muito Raro</option>
