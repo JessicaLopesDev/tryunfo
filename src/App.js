@@ -14,10 +14,39 @@ class App extends React.Component {
     cardTrunfo: false,
     isSaveButtonDisabled: true,
     // hasTrunfo: bool,
+    array: [],
   };
 
   onSaveButtonClick = (event) => {
     event.preventDefault();
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    } = this.state;
+
+    this.setState((prevState) => ({
+      array: [...prevState.array, {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+      }],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: '',
+    }));
   };
 
   stringInputValidation = () => {
