@@ -40,6 +40,7 @@ class App extends React.Component {
         cardAttr3,
         cardImage,
         cardRare,
+        cardTrunfo,
       }],
       cardName: '',
       cardDescription: '',
@@ -118,6 +119,7 @@ class App extends React.Component {
       cardTrunfo,
       isSaveButtonDisabled,
       hasTrunfo,
+      array,
     } = this.state;
 
     return (
@@ -136,16 +138,21 @@ class App extends React.Component {
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ String(cardAttr1) }
-          cardAttr2={ String(cardAttr2) }
-          cardAttr3={ String(cardAttr3) }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-        />
+        {
+          array.map((card) => (
+            <Card
+              key={ card.cardName }
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ String(card.cardAttr1) }
+              cardAttr2={ String(card.cardAttr2) }
+              cardAttr3={ String(card.cardAttr3) }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ cardTrunfo }
+            />
+          ))
+        }
       </>
     );
   }
