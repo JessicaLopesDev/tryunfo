@@ -60,17 +60,6 @@ class App extends React.Component {
   };
 
   onInputChange = ({ target }) => {
-    // const { name } = target;
-
-    console.log(target);
-
-    // const valueType = name === 'cardTrunfo' ? target.checked : target.value;
-    // this.setState({ [name]: valueType });
-    // this.setState((previousState) => ({
-    //   ...previousState,
-    //   [name]: valueType,
-    // }), this.formValidation);
-
     if (target.name === 'cardTrunfo') {
       this.setState((previousState) => ({
         ...previousState,
@@ -120,6 +109,18 @@ class App extends React.Component {
     }), this.formValidation);
   };
 
+  removeCard = (index) => {
+    const { array } = this.state;
+    const findSuperTrunfo = array.some((card, i) => i === index && card.cardTrunfo);
+
+    const filterRemoveCard = array.filter((_card, i) => i !== index);
+
+    this.setState({
+      array: filterRemoveCard,
+      hasTrunfo: !findSuperTrunfo,
+    });
+  };
+
   render() {
     const {
       cardName,
@@ -165,18 +166,28 @@ class App extends React.Component {
         />
 
         {
-          array.map((card) => (
-            <Card
-              key={ card.cardName }
-              cardName={ card.cardName }
-              cardDescription={ card.cardDescription }
-              cardAttr1={ String(card.cardAttr1) }
-              cardAttr2={ String(card.cardAttr2) }
-              cardAttr3={ String(card.cardAttr3) }
-              cardImage={ card.cardImage }
-              cardRare={ card.cardRare }
-              cardTrunfo={ card.cardTrunfo }
-            />
+          array.map((card, index) => (
+            <>
+              <Card
+                key={ card.cardName }
+                cardName={ card.cardName }
+                cardDescription={ card.cardDescription }
+                cardAttr1={ String(card.cardAttr1) }
+                cardAttr2={ String(card.cardAttr2) }
+                cardAttr3={ String(card.cardAttr3) }
+                cardImage={ card.cardImage }
+                cardRare={ card.cardRare }
+                cardTrunfo={ card.cardTrunfo }
+              />
+
+              <button
+                key={ index }
+                data-testid="delete-button"
+                onClick={ () => this.removeCard(index) }
+              >
+                Excluir
+              </button>
+            </>
           ))
         }
       </>
