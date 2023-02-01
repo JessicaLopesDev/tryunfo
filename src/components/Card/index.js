@@ -28,12 +28,15 @@ export default class Card extends Component {
           { cardDescription }
         </span>
         <h4 data-testid="attr1-card">
+          Attr1.............
           { cardAttr1 }
         </h4>
         <h4 data-testid="attr2-card">
+          Attr2.............
           { cardAttr2 }
         </h4>
         <h4 data-testid="attr3-card">
+          Attr3.............
           { cardAttr3 }
         </h4>
         <span data-testid="rare-card">

@@ -17,41 +17,6 @@ class App extends React.Component {
     array: [],
   };
 
-  onSaveButtonClick = (event) => {
-    event.preventDefault();
-    const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-    } = this.state;
-
-    this.setState((prevState) => ({
-      hasTrunfo: cardTrunfo,
-      array: [...prevState.array, {
-        cardName,
-        cardDescription,
-        cardAttr1,
-        cardAttr2,
-        cardAttr3,
-        cardImage,
-        cardRare,
-        cardTrunfo,
-      }],
-      cardName: '',
-      cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
-      cardImage: '',
-      cardRare: '',
-    }));
-  };
-
   stringInputValidation = () => {
     const {
       cardName,
@@ -95,16 +60,64 @@ class App extends React.Component {
   };
 
   onInputChange = ({ target }) => {
+    // const { name } = target;
+
+    console.log(target);
+
+    // const valueType = name === 'cardTrunfo' ? target.checked : target.value;
+    // this.setState({ [name]: valueType });
+    // this.setState((previousState) => ({
+    //   ...previousState,
+    //   [name]: valueType,
+    // }), this.formValidation);
+
     if (target.name === 'cardTrunfo') {
       this.setState((previousState) => ({
         ...previousState,
         cardTrunfo: !previousState.cardTrunfo,
       }), this.formValidation);
     } else {
-      this.setState({
+      this.setState((previousState) => ({
+        ...previousState,
         [target.name]: target.value,
-      }, this.formValidation);
+      }), this.formValidation);
     }
+  };
+
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+
+    this.setState((prevState) => ({
+      hasTrunfo: cardTrunfo,
+      array: [...prevState.array, {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+        cardTrunfo,
+      }],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: '',
+      cardTrunfo: false,
+    }), this.formValidation);
   };
 
   render() {
@@ -138,6 +151,19 @@ class App extends React.Component {
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
+
+        <Card
+          key={ cardName }
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ String(cardAttr1) }
+          cardAttr2={ String(cardAttr2) }
+          cardAttr3={ String(cardAttr3) }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+        />
+
         {
           array.map((card) => (
             <Card
@@ -149,7 +175,7 @@ class App extends React.Component {
               cardAttr3={ String(card.cardAttr3) }
               cardImage={ card.cardImage }
               cardRare={ card.cardRare }
-              cardTrunfo={ cardTrunfo }
+              cardTrunfo={ card.cardTrunfo }
             />
           ))
         }
