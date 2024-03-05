@@ -44,6 +44,6 @@ $ npm install
 
 # Execute a aplicação
 
-$ ynpm start
+$ npm start
 
 ```
